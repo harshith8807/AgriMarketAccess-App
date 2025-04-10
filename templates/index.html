@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#2c8c40">
+    <meta name="description" content="Real-time agricultural commodity prices across Karnataka">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="AgriMarket">
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/icon-192x192.png') }}">
+    <title data-i18n="header.title">AgriPrice Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="AgriPrice Logo" style="width: 50px; height: auto;">
+            <h1 data-i18n="header.title">Agri Market Acces</h1>
+        </div>
+        <p class="tagline" data-i18n="header.tagline">Real-time agricultural commodity prices across Karnataka</p>
+        <div class="language-switcher">
+            <select id="language-select" class="styled-select">
+                <option value="en">English</option>
+                <option value="kn">ಕನ್ನಡ</option>
+            </select>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+        <div class="sidebar">
+            <div class="filter-card">
+                <h2 data-i18n="filters.title">Filter Options</h2>
+                <div class="filter-group">
+                    <label for="commodity" data-i18n="filters.commodity">Commodity:</label>
+                    <select id="commodity" class="styled-select">
+                        <option value="3" data-i18n="cropRecommendation.crops.rice">Rice</option>
+                        <option value="1" data-i18n="cropRecommendation.crops.wheat">Wheat</option>
+                        <option value="4" data-i18n="cropRecommendation.crops.maize">Maize</option>
+                        <option value="5" data-i18n="cropRecommendation.crops.millets">Jowar</option>
+                        <option value="30" data-i18n="cropRecommendation.crops.millets">Ragi</option>
+                        <option value="97" data-i18n="cropRecommendation.crops.pulses">Pulses</option>
+                        <option value="6" data-i18n="cropRecommendation.crops.bengalGram">Bengal Gram</option>
+                        <option value="7" data-i18n="cropRecommendation.crops.redGram">Red Gram</option>
+                        <option value="8" data-i18n="cropRecommendation.crops.blackGram">Black Gram</option>
+                        <option value="9" data-i18n="cropRecommendation.crops.greenGram">Green Gram</option>
+                        <option value="114" data-i18n="cropRecommendation.crops.horseGram">Horse Gram</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="district" data-i18n="filters.district">District:</label>
+                    <select id="district" class="styled-select">
+                        <option value="556" data-i18n="weather.locations.Bagalkot">Bagalkot</option>
+                        <option value="572" data-i18n="weather.locations.Bangalore">Bangalore</option>
+                        <option value="583" data-i18n="weather.locations.BangaloreRural">Bangalore Rural</option>
+                        <option value="565" data-i18n="weather.locations.Bellary">Bellary</option>
+                        <option value="558" data-i18n="weather.locations.Bidar">Bidar</option>
+                        <option value="557" data-i18n="weather.locations.Bijapur">Bijapur</option>
+                        <option value="578" data-i18n="weather.locations.Chamarajanagar">Chamarajanagar</option>
+                        <option value="582" data-i18n="weather.locations.Chikkaballapura">Chikkaballapura</option>
+                        <option value="570" data-i18n="weather.locations.Chikmagalur">Chikmagalur</option>
+                        <option value="566" data-i18n="weather.locations.Chitradurga">Chitradurga</option>
+                        <option value="575" data-i18n="weather.locations.DakshinaKannada">Dakshina Kannada</option>
+                        <option value="567" data-i18n="weather.locations.Davanagere">Davanagere</option>
+                        <option value="562" data-i18n="weather.locations.Dharwad">Dharwad</option>
+                        <option value="561" data-i18n="weather.locations.Gadag">Gadag</option>
+                        <option value="579" data-i18n="weather.locations.Gulbarga">Gulbarga</option>
+                        <option value="574" data-i18n="weather.locations.Hassan">Hassan</option>
+                        <option value="564" data-i18n="weather.locations.Haveri">Haveri</option>
+                        <option value="576" data-i18n="weather.locations.Kodagu">Kodagu</option>
+                        <option value="581" data-i18n="weather.locations.Kolar">Kolar</option>
+                        <option value="560" data-i18n="weather.locations.Koppal">Koppal</option>
+                        <option value="573" data-i18n="weather.locations.Mandya">Mandya</option>
+                        <option value="577" data-i18n="weather.locations.Mysore">Mysore</option>
+                        <option value="584" data-i18n="weather.locations.Ramanagara">Ramanagara</option>
+                        <option value="559" data-i18n="weather.locations.Raichur">Raichur</option>
+                        <option value="568" data-i18n="weather.locations.Shimoga">Shimoga</option>
+                        <option value="571" data-i18n="weather.locations.Tumkur">Tumkur</option>
+                        <option value="569" data-i18n="weather.locations.Udupi">Udupi</option>
+                        <option value="563" data-i18n="weather.locations.UttaraKannada">Uttara Kannada</option>
+                        <option value="580" data-i18n="weather.locations.Yadgir">Yadgir</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="calculation_type" data-i18n="filters.viewBy">View By:</label>
+                    <select id="calculation_type" class="styled-select">
+                        <option value="daily" data-i18n="filters.daily">Daily</option>
+                        <option value="monthly" data-i18n="filters.monthly">Monthly</option>
+                    </select>
+                </div>
+
+                <div class="date-range-group">
+                    <h3 data-i18n="filters.dateRange">Date Range</h3>
+                    <div class="filter-group">
+                        <label for="start_date" data-i18n="filters.from">From:</label>
+                        <input type="date" id="start_date" value="2024-01-01" class="date-input">
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="end_date" data-i18n="filters.to">To:</label>
+                        <input type="date" id="end_date" value="2025-03-31" class="date-input">
+                    </div>
+                </div>
+
+                <button id="fetch-button" class="primary-button" data-i18n="filters.getPrices">Get Prices</button>
+            </div>
+
+            <div class="price-summary-card" id="price-summary">
+                <h2 data-i18n="priceSummary.title">Price Summary (₹/quintal)</h2>
+                <div class="summary-content">
+                    <p data-i18n="priceSummary.selectFilters">Select filters and click "Get Prices"</p>
+                </div>
+            </div>
+            <!-- Weather Display Card -->
+            <div class="weather-card" id="weather-card">
+                <h2 data-i18n="weather.title">Weather Forecast</h2>
+                <div class="location-selector">
+                    <select id="location-select" class="styled-select">
+                        <option value="16.1650,75.6615" data-i18n="weather.locations.Bagalkot">Bagalkot</option>
+                        <option value="12.9716,77.5946" data-i18n="weather.locations.Bangalore">Bangalore</option>
+                        <option value="13.2277,77.5878" data-i18n="weather.locations.BangaloreRural">Bangalore Rural</option>
+                        <option value="15.1394,76.9214" data-i18n="weather.locations.Bellary">Bellary</option>
+                        <option value="17.9104,77.5199" data-i18n="weather.locations.Bidar">Bidar</option>
+                        <option value="16.8302,75.7100" data-i18n="weather.locations.Bijapur">Bijapur</option>
+                        <option value="11.9261,76.9401" data-i18n="weather.locations.Chamarajanagar">Chamarajanagar</option>
+                        <option value="13.4325,77.7275" data-i18n="weather.locations.Chikkaballapura">Chikkaballapura</option>
+                        <option value="13.3161,75.7720" data-i18n="weather.locations.Chikmagalur">Chikmagalur</option>
+                        <option value="14.2251,76.3982" data-i18n="weather.locations.Chitradurga">Chitradurga</option>
+                        <option value="12.8698,74.8383" data-i18n="weather.locations.DakshinaKannada">Dakshina Kannada</option>
+                        <option value="14.4644,75.9218" data-i18n="weather.locations.Davanagere">Davanagere</option>
+                        <option value="15.4589,75.0078" data-i18n="weather.locations.Dharwad">Dharwad</option>
+                        <option value="15.4327,75.6350" data-i18n="weather.locations.Gadag">Gadag</option>
+                        <option value="17.3297,76.8343" data-i18n="weather.locations.Gulbarga">Gulbarga</option>
+                        <option value="13.0068,76.1003" data-i18n="weather.locations.Hassan">Hassan</option>
+                        <option value="14.7948,75.3973" data-i18n="weather.locations.Haveri">Haveri</option>
+                        <option value="12.3375,75.8069" data-i18n="weather.locations.Kodagu">Kodagu</option>
+                        <option value="13.1367,78.1343" data-i18n="weather.locations.Kolar">Kolar</option>
+                        <option value="15.3547,76.1567" data-i18n="weather.locations.Koppal">Koppal</option>
+                        <option value="12.5218,76.8951" data-i18n="weather.locations.Mandya">Mandya</option>
+                        <option value="12.2958,76.6394" data-i18n="weather.locations.Mysore">Mysore</option>
+                        <option value="12.7223,77.2819" data-i18n="weather.locations.Ramanagara">Ramanagara</option>
+                        <option value="16.2120,77.3439" data-i18n="weather.locations.Raichur">Raichur</option>
+                        <option value="13.9299,75.5667" data-i18n="weather.locations.Shimoga">Shimoga</option>
+                        <option value="13.3379,77.1173" data-i18n="weather.locations.Tumkur">Tumkur</option>
+                        <option value="13.3409,74.7421" data-i18n="weather.locations.Udupi">Udupi</option>
+                        <option value="14.6196,74.9244" data-i18n="weather.locations.UttaraKannada">Uttara Kannada</option>
+                        <option value="16.7689,77.1289" data-i18n="weather.locations.Yadgir">Yadgir</option>
+                    </select>
+                    <button id="get-weather" class="weather-button" data-i18n="weather.refresh">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="16"></line>
+                            <line x1="8" y1="12" x2="16" y2="12"></line>
+                        </svg>
+                        Refresh
+                    </button>
+                </div>
+                <div class="weather-content">
+                    <p data-i18n="weather.selectLocation">Select location and click refresh</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <!-- Table Section (Now Above Charts) -->
+            <div class="table-container">
+                <h2 data-i18n="table.title">Detailed Price Data</h2>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th data-i18n="table.date">Date</th>
+                                <th data-i18n="table.commodity">Commodity</th>
+                                <th data-i18n="table.district">District</th>
+                                <th data-i18n="table.minPrice">Min Price (₹/quintal)</th>
+                                <th data-i18n="table.maxPrice">Max Price (₹/quintal)</th>
+                                <th data-i18n="table.modalPrice">Modal Price (₹/quintal)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="priceTable">
+                            <tr><td colspan="6" data-i18n="table.selectFilters">Select filters and click "Get Prices"</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Visualization Section (Now Below Table) -->
+            <div class="visualization-container">
+                <h2 data-i18n="charts.title">Price Visualization</h2>
+                <div class="chart-tabs">
+                    <button class="tab-button active" data-chart="price-line-chart" data-i18n="charts.lineChart">Line Chart</button>
+                    <button class="tab-button" data-chart="price-bar-chart" data-i18n="charts.barChart">Bar Chart</button>
+                </div>
+                
+                <div class="chart-container">
+                    <canvas id="price-line-chart"></canvas>
+                    <canvas id="price-bar-chart" style="display: none;"></canvas>
+                </div>
+            </div>
+            <!-- Profit Calculator Section -->
+            <div class="profit-calculator-card">
+                <h2 data-i18n="profitCalculator.title">Profit Calculator</h2>
+                <div class="calculator-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="selling-price" data-i18n="profitCalculator.sellingPrice">Selling Price (₹/quintal):</label>
+                            <input type="number" id="selling-price" class="calculator-input" placeholder="Enter selling price">
+                        </div>
+                        <div class="form-group">
+                            <label for="yield-per-acre" data-i18n="profitCalculator.yieldPerAcre">Yield (quintals/acre):</label>
+                            <input type="number" id="yield-per-acre" class="calculator-input" placeholder="Enter yield">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="cost-per-acre" data-i18n="profitCalculator.costPerAcre">Cost of Production (₹/acre):</label>
+                            <input type="number" id="cost-per-acre" class="calculator-input" placeholder="Enter production cost">
+                        </div>
+                        <div class="form-group">
+                            <label for="land-size" data-i18n="profitCalculator.landSize">Land Size (acres):</label>
+                            <input type="number" id="land-size" class="calculator-input" placeholder="Enter land size">
+                        </div>
+                    </div>
+                    <button id="calculate-profit" class="primary-button" data-i18n="profitCalculator.calculate">Calculate Profit</button>
+                </div>
+                <div class="calculator-results" id="profit-results">
+                    <p data-i18n="profitCalculator.enterValues">Enter values above and click calculate</p>
+                </div>
+            </div>
+            <!-- Crop Recommendation Section -->
+            <div class="crop-recommendation-card">
+                <h2 data-i18n="cropRecommendation.title">Crop Recommendation System</h2>
+                <div class="recommendation-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="soil-type" data-i18n="cropRecommendation.soilType">Soil Type:</label>
+                            <select id="soil-type" class="styled-select">
+                                <option value="clay" data-i18n="cropRecommendation.soilTypes.clay">Clay Soil</option>
+                                <option value="sandy" data-i18n="cropRecommendation.soilTypes.sandy">Sandy Soil</option>
+                                <option value="loamy" data-i18n="cropRecommendation.soilTypes.loamy">Loamy Soil</option>
+                                <option value="black" data-i18n="cropRecommendation.soilTypes.black">Black Soil</option>
+                                <option value="red" data-i18n="cropRecommendation.soilTypes.red">Red Soil</option>
+                                <option value="alluvial" data-i18n="cropRecommendation.soilTypes.alluvial">Alluvial Soil</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="season" data-i18n="cropRecommendation.season">Growing Season:</label>
+                            <select id="season" class="styled-select">
+                                <option value="kharif" data-i18n="cropRecommendation.seasons.kharif">Kharif (Monsoon)</option>
+                                <option value="rabi" data-i18n="cropRecommendation.seasons.rabi">Rabi (Winter)</option>
+                                <option value="summer" data-i18n="cropRecommendation.seasons.summer">Summer</option>
+                                <option value="year_round" data-i18n="cropRecommendation.seasons.year_round">Year Round</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="water-availability" data-i18n="cropRecommendation.waterAvailability">Water Availability:</label>
+                            <select id="water-availability" class="styled-select">
+                                <option value="high" data-i18n="cropRecommendation.waterLevels.high">High (Irrigated)</option>
+                                <option value="medium" data-i18n="cropRecommendation.waterLevels.medium">Medium (Semi-Irrigated)</option>
+                                <option value="low" data-i18n="cropRecommendation.waterLevels.low">Low (Rainfed)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="farm-size" data-i18n="cropRecommendation.farmSize">Farm Size:</label>
+                            <select id="farm-size" class="styled-select">
+                                <option value="small" data-i18n="cropRecommendation.farmSizes.small">Small (< 5 acres)</option>
+                                <option value="medium" data-i18n="cropRecommendation.farmSizes.medium">Medium (5-10 acres)</option>
+                                <option value="large" data-i18n="cropRecommendation.farmSizes.large">Large (> 10 acres)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button id="recommend-crops" class="primary-button" data-i18n="cropRecommendation.getRecommendations">Get Recommendations</button>
+                </div>
+                <div class="recommendation-results" id="crop-recommendations">
+                    <p data-i18n="cropRecommendation.selectParameters">Select soil and season parameters above and click to get recommendations</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p data-i18n="footer.copyright">© 2025 AgriPrice Dashboard | Powered by Agmarknet API</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

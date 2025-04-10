@@ -1,0 +1,173 @@
+{
+    "header": {
+        "title": "Agri Market Access",
+        "tagline": "Real-time agricultural commodity prices across Karnataka"
+    },
+    "filters": {
+        "title": "Filter Options",
+        "commodity": "Commodity:",
+        "district": "District:",
+        "viewBy": "View By:",
+        "daily": "Daily",
+        "monthly": "Monthly",
+        "dateRange": "Date Range",
+        "from": "From:",
+        "to": "To:",
+        "getPrices": "Get Prices"
+    },
+    "priceSummary": {
+        "title": "Price Summary (₹/quintal)",
+        "selectFilters": "Select filters and click \"Get Prices\"",
+        "commodity": "Commodity:",
+        "district": "District:",
+        "averagePrice": "Average Price:",
+        "priceRange": "Price Range:",
+        "priceTrend": "Price Trend:"
+    },
+    "weather": {
+        "title": "Weather Forecast",
+        "refresh": "Refresh",
+        "selectLocation": "Select location and click refresh",
+        "feelsLike": "Feels Like",
+        "humidity": "Humidity",
+        "wind": "Wind",
+        "pressure": "Pressure",
+        "farmingTip": "Farming Tip:",
+        "locations": {
+            "Bagalkot": "Bagalkot",
+            "Bangalore": "Bangalore",
+            "BangaloreRural": "Bangalore Rural",
+            "Bellary": "Bellary",
+            "Bidar": "Bidar",
+            "Bijapur": "Bijapur",
+            "Chamarajanagar": "Chamarajanagar",
+            "Chikkaballapura": "Chikkaballapura",
+            "Chikmagalur": "Chikmagalur",
+            "Chitradurga": "Chitradurga",
+            "DakshinaKannada": "Dakshina Kannada",
+            "Davanagere": "Davanagere",
+            "Dharwad": "Dharwad",
+            "Gadag": "Gadag",
+            "Gulbarga": "Gulbarga",
+            "Hassan": "Hassan",
+            "Haveri": "Haveri",
+            "Kodagu": "Kodagu",
+            "Kolar": "Kolar",
+            "Koppal": "Koppal",
+            "Mandya": "Mandya",
+            "Mysore": "Mysore",
+            "Ramanagara": "Ramanagara",
+            "Raichur": "Raichur",
+            "Shimoga": "Shimoga",
+            "Tumkur": "Tumkur",
+            "Udupi": "Udupi",
+            "UttaraKannada": "Uttara Kannada",
+            "Yadgir": "Yadgir"
+        },
+        "tips": {
+            "rain": "Avoid spraying pesticides as rain may wash them away. Good time for transplanting seedlings.",
+            "thunderstorm": "Keep livestock sheltered. Avoid field work due to lightning risk.",
+            "clear": "Good conditions for harvesting and drying crops. Consider mulching to retain soil moisture.",
+            "cloud": "Moderate conditions for field work. Good time for fertilizer application if no rain expected.",
+            "fog": "Watch for fungal diseases in these humid conditions. Delay spraying operations.",
+            "snow": "Protect sensitive crops from frost. Ensure proper covering for seedbeds.",
+            "default": "Check soil moisture and plan field activities accordingly."
+        }
+    },
+    "table": {
+        "title": "Detailed Price Data",
+        "date": "Date",
+        "commodity": "Commodity",
+        "district": "District",
+        "minPrice": "Min Price (₹/quintal)",
+        "maxPrice": "Max Price (₹/quintal)",
+        "modalPrice": "Modal Price (₹/quintal)",
+        "selectFilters": "Select filters and click \"Get Prices\""
+    },
+    "charts": {
+        "title": "Price Visualization",
+        "lineChart": "Line Chart",
+        "barChart": "Bar Chart"
+    },
+    "profitCalculator": {
+        "title": "Profit Calculator",
+        "sellingPrice": "Selling Price (₹/quintal):",
+        "yieldPerAcre": "Yield (quintals/acre):",
+        "costPerAcre": "Cost of Production (₹/acre):",
+        "landSize": "Land Size (acres):",
+        "calculate": "Calculate Profit",
+        "totalYield": "Total Yield:",
+        "totalRevenue": "Total Revenue:",
+        "totalCost": "Total Cost:",
+        "profitPerAcre": "Profit per Acre:",
+        "totalProfit": "Total Profit:",
+        "roi": "Return on Investment:",
+        "enterValues": "Enter values above and click calculate",
+        "results": {
+            "quintals": "quintals",
+            "rupees": "₹",
+            "percent": "%",
+            "positive": "Profit",
+            "negative": "Loss"
+        }
+    },
+    "cropRecommendation": {
+        "title": "Crop Recommendation System",
+        "soilType": "Soil Type:",
+        "season": "Growing Season:",
+        "waterAvailability": "Water Availability:",
+        "farmSize": "Farm Size:",
+        "getRecommendations": "Get Recommendations",
+        "selectParameters": "Select soil and season parameters above and click to get recommendations",
+        "suitability": "Suitability:",
+        "high": "High",
+        "medium": "Medium",
+        "fair": "Fair",
+        "soilTypes": {
+            "clay": "Clay Soil",
+            "sandy": "Sandy Soil",
+            "loamy": "Loamy Soil",
+            "black": "Black Soil",
+            "red": "Red Soil",
+            "alluvial": "Alluvial Soil"
+        },
+        "seasons": {
+            "kharif": "Kharif (Monsoon)",
+            "rabi": "Rabi (Winter)",
+            "summer": "Summer",
+            "year_round": "Year Round"
+        },
+        "waterLevels": {
+            "high": "High (Irrigated)",
+            "medium": "Medium (Semi-Irrigated)",
+            "low": "Low (Rainfed)"
+        },
+        "farmSizes": {
+            "small": "Small (< 5 acres)",
+            "medium": "Medium (5-10 acres)",
+            "large": "Large (> 10 acres)"
+        },
+        "crops": {
+            "rice": "Rice",
+            "wheat": "Wheat",
+            "maize": "Maize",
+            "sugarcane": "Sugarcane",
+            "cotton": "Cotton",
+            "pulses": "Pulses",
+            "oilseeds": "Oilseeds",
+            "vegetables": "Vegetables",
+            "fruits": "Fruits",
+            "turmeric": "Turmeric",
+            "millets": "Millets",
+            "jute": "Jute",
+            "bengalGram": "Bengal Gram - Whole",
+            "redGram": "Red Gram",
+            "blackGram": "Black Gram - Urd Beans",
+            "greenGram": "Green Gram - Moong",
+            "horseGram": "Horse Gram"
+        }
+    },
+    "footer": {
+        "copyright": "© 2025 AgriPrice Dashboard | Powered by Agmarknet API"
+    }
+} 
